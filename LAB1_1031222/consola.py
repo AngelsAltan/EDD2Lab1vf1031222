@@ -42,10 +42,10 @@ while(opciones):
 
     if(menu == "a"):
         print("a. Patch Nombre")
-        nombre = input("nombre de las personas a hacer patch")
+        nombre = input("nombre de las personas a hacer patch: ")
         lista = arbolAplicantes.busquedaNombreRango(nombre)
-        fecha = input("nueva fecha de nacimiento")
-        direccion = input("nueva direccion")
+        fecha = input("nueva fecha de nacimiento: ")
+        direccion = input("nueva direccion: ")
         if (fecha != '') & (direccion != ''):
             i =0
             while i < len(lista):
@@ -53,11 +53,22 @@ while(opciones):
                 lista[i].address = direccion
                 i += 1
         else:
-            print("No se hacen cambios")
+            print("sin cambios")
 
     elif(menu == "b"):
         print("b. Patch dpi")
-
+        dpi = input("dpi de la persona a hacer patch: ")
+        lista = arbolAplicantes.busquedaDpi(dpi)
+        fecha = input("nueva fecha de nacimiento: ")
+        direccion = input("nueva direccion: ")
+        if (fecha != '') & (direccion != ''):
+            i =0
+            while i < len(lista):
+                lista[i].datebirth = fecha
+                lista[i].address = direccion
+                i += 1
+        else:
+            print("sin cambios")
 
     elif(menu == "c"):
         print("c. Buscar nombre")

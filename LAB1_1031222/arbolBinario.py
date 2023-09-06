@@ -63,7 +63,7 @@ class arbolBinario_:
 
     def busquedaNombreRango(self, nombre):
         listaNombre = []
-        self._buscar_por_nombre_recursivo(self.raiz, nombre, listaNombre)
+        self._busquedaNombreRango(self.raiz, nombre, listaNombre)
         return listaNombre
 
     def _busquedaNombreRango(self, nodo_actual, nombre, listaNombre):
