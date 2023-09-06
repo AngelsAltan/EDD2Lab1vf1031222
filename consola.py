@@ -11,7 +11,7 @@ with open('input.csv') as a:
         aplicanteActual = aplicantes_.from_json(str(fila[1]))
         if fila[0] == "INSERT":
             arbolAplicantes.insertar(aplicanteActual)
-
+            
         elif fila[0] == "PATCH":
             if (arbolAplicantes.buscar(aplicanteActual)!= False):
                 aplicanteActualizar = arbolAplicantes.buscar(aplicanteActual)
@@ -29,6 +29,7 @@ with open('input.csv') as a:
     print("Se cargo el archivo correctamente!")
 
 opciones = True
+
 while(opciones):
     print("MENU:")
     print("a. Patch Nombre")
@@ -44,14 +45,14 @@ while(opciones):
         print("a. Patch Nombre")
         nombre = input("nombre de las personas a hacer patch: ")
         lista = arbolAplicantes.busquedaNombreRango(nombre)
-        fecha = input("nueva fecha de nacimiento: ")
-        direccion = input("nueva direccion: ")
-        if (fecha != '') & (direccion != ''):
-            i =0
+        nuevaFecha = input("nueva fecha de nacimiento: ")
+        nuevaDireccion = input("nueva direccion: ")
+        if (nuevaFecha != '') & (nuevaDireccion != ''):
+            i = 0
             while i < len(lista):
-                lista[i].datebirth = fecha
-                lista[i].address = direccion
-                i += 1
+                lista[i].fechaNacimiento = nuevaFecha
+                lista[i].direccion = nuevaDireccion
+                i = i + 1
         else:
             print("sin cambios")
 
@@ -59,35 +60,63 @@ while(opciones):
         print("b. Patch dpi")
         dpi = input("dpi de la persona a hacer patch: ")
         lista = arbolAplicantes.busquedaDpi(dpi)
-        fecha = input("nueva fecha de nacimiento: ")
-        direccion = input("nueva direccion: ")
-        if (fecha != '') & (direccion != ''):
-            i =0
+        nuevaFecha = input("nueva fecha de nacimiento: ")
+        nuevaDireccion = input("nueva direccion: ")
+        if (nuevaFecha != '') & (nuevaDireccion != ''):
+            i = 0
             while i < len(lista):
-                lista[i].datebirth = fecha
-                lista[i].address = direccion
-                i += 1
+                lista[i].fechaNacimiento = nuevaFecha
+                lista[i].direccion = nuevaDireccion
+                i = i + 1
         else:
             print("sin cambios")
 
     elif(menu == "c"):
         print("c. Buscar nombre")
-
+        nombre = input("nombre de las personas a buscar: ")
+        lista = arbolAplicantes.busquedaNombreRango(nombre)
+        i = 0
+        while i < len(lista):
+            print("Nombre: " + lista[i].nombre)
+            print("DPI: " + lista[i].dpi)
+            print("Fecha de nacimiento: " + lista[i].fechaNacimiento)
+            print("Direccion: " + lista[i].direccion)
+            i = i + 1
+        print(str(i) + ", resultados")
 
     elif(menu == "d"):
         print("d. Buscar dpi")
-
+        dpi = input("dpi de la persona a buscar: ")
+        lista = arbolAplicantes.busquedaDpi(dpi)
+        i = 0
+        while i < len(lista):
+            print("Nombre: " + lista[i].nombre)
+            print("DPI: " + lista[i].dpi)
+            print("Fecha de nacimiento: " + lista[i].fechaNacimiento)
+            print("Direccion: " + lista[i].direccion)
+            i = i + 1
 
     elif(menu == "e"):
         print("e. Eliminar Nombre")
-
+        nombre = input("nombre de las personas a eliminar: ")
+        lista = arbolAplicantes.busquedaNombreRango(nombre)
+        i = 0
+        while i < len(lista):
+            arbolAplicantes.eliminar(lista[i])
+            i = i + 1
+        print(str(i) + ", eliminados")
 
     elif(menu == "f"):
         print("f. Eliminar dpi")
-
+        dpi = input("dpi de la persona a eliminar: ")
+        lista = arbolAplicantes.busquedaDpi(dpi)
+        i = 0
+        while i < len(lista):
+            arbolAplicantes.eliminar(lista[i])
+            i = i + 1
 
     elif(menu == "g"):
-        menu = False
+        opciones = False
 
     else:
         print("Error. al ingresar la opcion")
